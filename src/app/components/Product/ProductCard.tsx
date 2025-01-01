@@ -1,6 +1,14 @@
 import Image from 'next/image';
 
-const ProductCard = ({ product }: any) => {
+interface Product {
+    name: string;
+    imageUrl: string;
+    description: string;
+    price: number;
+  }
+
+
+const ProductCard = ({ product }: { product: Product }) => {
   return (
     <div className="bg-white rounded-lg shadow-md p-4">
       <div className="relative">
