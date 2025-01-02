@@ -1,6 +1,11 @@
+"use client"
 import Image from 'next/image';
+import Rating from '@mui/material/Rating';
+import TextClip from '@/app/utils/TextClip';
+import { useRouter } from 'next/navigation';
 
 interface Product {
+    id: number;
     name: string;
     imageUrl: string;
     description: string;
@@ -9,23 +14,25 @@ interface Product {
 
 
 const ProductCard = ({ product }: { product: Product }) => {
+  const router = useRouter();
+
   return (
-    <div className="bg-white rounded-lg shadow-md p-4">
-      <div className="relative">
+    <div onClick={() => router.push(`/product/${product.id}`)}>
+    <div className="w-full max-w-sm bg-white border border-gray-100 rounded-lg shadow dark:bg-gray-500 dark:border-gray-700">
+      <div className="relative  w-64 h-64">
         <Image
-          src={product.imageUrl} 
+          className='rounded-t-lg'
+          src={product.imageUrl}
           alt={product.name}
-          width={200} 
-          height={200} 
-          className="object-cover rounded-lg"
+          layout="fill"
+          objectFit="cover"
         />
       </div>
-      <div className="mt-4 text-center">
-        <h3 className="text-lg font-semibold text-gray-800">{product.name}</h3>
-        <p className="text-sm text-gray-600">{product.description}</p>
-        <p className="mt-2 text-lg font-bold text-blue-500">${product.price.toFixed(2)}</p>
+      <Rating name="read-only" value={4} readOnly />
+        <div className="text-gray-300 dark:text-white">{product.price} ₺ </div>
+        <h5 className="mb-2 text-l font-bold tracking-tight text-gray-900 dark:text-white">{TextClip(product.name)}</h5>
       </div>
-    </div>
+      </div>
   );
 };
 
