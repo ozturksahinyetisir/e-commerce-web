@@ -4,6 +4,8 @@ import PageContainer from "../containers/PageContainer"
 import Rating from '@mui/material/Rating';
 import { useRouter } from 'next/navigation';
 import Image from 'next/image';
+import { useState } from 'react';
+import Counter from "../general/Counter";
 
 
 interface Product {
@@ -12,10 +14,39 @@ interface Product {
   description: string;
   price: number;
   imageUrl: string;
+  inStock: boolean
+}
+
+export type CardProductProps = {
+  id : number;
+  name : string;
+  price :  number;
+  quantity : number
+  image : string
+  inStock : boolean
 }
 
 const DetailClient = ({product}:{product:Product}) => {
   const router = useRouter();
+
+  const [cardProduct, setCardProduct] = useState<CardProductProps>({
+    id : product.id,
+    name : product.name,
+    price :  product.price,
+    quantity : 1,
+    image : product.imageUrl,
+    inStock : product.inStock,
+  
+  })
+
+  const increaseFunc = () => {
+    if(cardProduct.quantity == 10) return
+    setCardProduct(prev => ({...prev, quantity: prev.quantity + 1}))
+  }
+  const decreaseFunc = () => {
+    if(cardProduct.quantity == 1) return
+    setCardProduct(prev => ({...prev, quantity: prev.quantity - 1}))
+  }
   return (
     <PageContainer>
       <div className="p-10 flex items-center justify-center">
@@ -44,11 +75,14 @@ const DetailClient = ({product}:{product:Product}) => {
           
           <div className="mb-4">
             <Rating name="read-only" value={4} readOnly />
+            
           </div>
 
           <p className="mt-4 text-lg text-gray-700 text-center">{product.description}</p>
           
           <p className="text-xl text-black font-semibold mt-2 text-center">{product.price} ₺</p>
+          <Counter increateFunc={increaseFunc} decreaseFunc={decreaseFunc} cardProduct={cardProduct} />
+          
         </div>
       </div>
     </div>
