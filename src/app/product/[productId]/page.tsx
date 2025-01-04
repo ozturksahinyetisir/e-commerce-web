@@ -1,10 +1,10 @@
-import React from "react";"1"
+import React from "react";
 import products from "@/app/utils/Products";
 import DetailClient from "@/app/components/Detail/DetailClient";
 
 
 type DetailProps = {
-  productId?: string;
+  productId: string;
 };
 
 const Detail = ({params}: {params:DetailProps}) => {
