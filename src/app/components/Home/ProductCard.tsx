@@ -4,7 +4,16 @@ import Rating from '@mui/material/Rating';
 import TextClip from '@/app/utils/TextClip';
 import { useRouter } from 'next/navigation';
 
-const ProductCard = ({ product }: { product: any }) => {
+
+interface Product {
+  id: number;
+  name: string;
+  description: string;
+  price: number;
+  imageUrl: string;
+}
+
+const ProductCard = ({ product }: { product: Product }) => {
   const router = useRouter();
   console.log(`/product/${product.id}`);
   return (

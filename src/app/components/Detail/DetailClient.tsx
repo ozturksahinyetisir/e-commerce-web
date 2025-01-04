@@ -3,8 +3,18 @@
 import PageContainer from "../containers/PageContainer"
 import Rating from '@mui/material/Rating';
 import { useRouter } from 'next/navigation';
+import Image from 'next/image';
 
-const DetailClient = ({product}:{product:any}) => {
+
+interface Product {
+  id: number;
+  name: string;
+  description: string;
+  price: number;
+  imageUrl: string;
+}
+
+const DetailClient = ({product}:{product:Product}) => {
   const router = useRouter();
   return (
     <PageContainer>
@@ -21,11 +31,12 @@ const DetailClient = ({product}:{product:any}) => {
             </svg>
           </button>
 
-          <img
-            src={product.imageUrl}
-            alt={product.name}
-            className="w-full  object-cover rounded-lg shadow-md min-w-[100px] min-h-[40px]"
-          />
+        <Image
+           src={product.imageUrl}
+           alt={product.name}
+           width={500}
+           height={500}
+           className="w-full  object-cover rounded-lg shadow-md min-w-[100px] min-h-[40px]"/>
         </div>
         
         <div className="w-1/2 flex flex-col items-center justify-center">
