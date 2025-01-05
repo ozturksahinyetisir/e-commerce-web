@@ -82,7 +82,14 @@ const DetailClient = ({product}:{product:Product}) => {
           
           <p className="text-xl text-black font-semibold mt-2 text-center">{product.price} ₺</p>
           <Counter increateFunc={increaseFunc} decreaseFunc={decreaseFunc} cardProduct={cardProduct} />
-          
+          <div className="mt-4">
+            <button
+              onClick={() => router.push('/cart')}
+              className="px-4 py-2 bg-blue-500 text-white rounded-lg shadow-lg hover:bg-blue-600 transition"
+            >
+              Sepete Ekle
+            </button>
+          </div>
         </div>
       </div>
     </div>

@@ -3,12 +3,12 @@ import products from "@/app/utils/Products";
 import DetailClient from "@/app/components/Detail/DetailClient";
 
 
-type DetailProps = {
+export type DetailProps = Promise<{
   productId: string;
-};
+}>;
 
-const Detail = ({params}: {params:DetailProps}) => {
-  const { productId } = params;
+export default async  function Detail(props: {params:DetailProps}){
+  const { productId } = await props.params;
   const product = products.find((product) => product.id === Number(productId));
 
   if (!product) {
@@ -21,5 +21,3 @@ const Detail = ({params}: {params:DetailProps}) => {
     </div>
   );
 };
-
-export default Detail;
