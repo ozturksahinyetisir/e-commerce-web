@@ -1,5 +1,5 @@
 import React from 'react'
-import CardClient from './../components/cart/CartClient'
+import CardClient from '../components/Cart/CartClient'
 const Cart = () => {
   return (
     <div>
