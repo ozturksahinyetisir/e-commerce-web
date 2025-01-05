@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import "./styles/globals.css";
 import Navbar from './components/navbar/Navbar';
 import Footer from "./components/footer/Footer";
+import CartProvider from "../../provider/CartProvider";
+import Providers from "../../provider/Providers";
 
 export const metadata: Metadata = {
   title: "Ozturk E-Ticaret",
@@ -20,9 +22,12 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className="bg-blue-50">
+        <CartProvider>
         <Navbar />
-        {children}
+        <main className="min-h-screen">
+          <Providers>{children}</Providers></main>
         <Footer />
+        </CartProvider>
       </body>
     </html>
   );

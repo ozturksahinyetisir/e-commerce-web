@@ -14,7 +14,6 @@ const Home = () => {
   En yeni, zarif takılarla alışverişe başlayın ve kendinizi şımartın!
 </p>
       </header>
-
       <div className="bg-white p-4 rounded-lg shadow-md">
           <Banner/>
           <Category/>

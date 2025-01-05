@@ -4,9 +4,13 @@ import Logo from './Logo';
 import Search from './Search';
 import HamburgerMenu from './HamburgerMenu';
 import User from './User';
+import MyCart from './MyCart';
+
+
 
 const Navbar = () => {
   return (
+    
     <nav className="bg-blue-500 p-4 shadow-md">
       <div className="container mx-auto flex justify-between items-center">
     
@@ -28,6 +32,7 @@ const Navbar = () => {
         </div>
 
         <Search/>
+        <MyCart/>
         <User/>
         <HamburgerMenu/>
       </div>

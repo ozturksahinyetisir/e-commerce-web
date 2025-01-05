@@ -4,9 +4,10 @@ import PageContainer from "../containers/PageContainer"
 import Rating from '@mui/material/Rating';
 import { useRouter } from 'next/navigation';
 import Image from 'next/image';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import Counter from "../general/Counter";
-
+import UseCart from "../hooks/UseCart";
+import Button from "../general/Button";
 
 interface Product {
   id: number;
@@ -17,7 +18,7 @@ interface Product {
   inStock: boolean
 }
 
-export type CardProductProps = {
+export type CartProductProps = {
   id : number;
   name : string;
   price :  number;
@@ -29,7 +30,10 @@ export type CardProductProps = {
 const DetailClient = ({product}:{product:Product}) => {
   const router = useRouter();
 
-  const [cardProduct, setCardProduct] = useState<CardProductProps>({
+  const {addToBasket,cartProducts} = UseCart();
+  const [displayButton,setDisplayButton] = useState(false);
+
+  const [cartProduct, setCartProduct] = useState<CartProductProps>({
     id : product.id,
     name : product.name,
     price :  product.price,
@@ -38,14 +42,22 @@ const DetailClient = ({product}:{product:Product}) => {
     inStock : product.inStock,
   
   })
+  
+  useEffect(() => {
+    setDisplayButton(false);
+    const controlDisplay = cartProducts?.findIndex(cart => cart.id === product.id) ?? -1;
+    if (controlDisplay > -1) {
+        setDisplayButton(true);
+    }
+}, [cartProducts, product.id]); 
 
   const increaseFunc = () => {
-    if(cardProduct.quantity == 10) return
-    setCardProduct(prev => ({...prev, quantity: prev.quantity + 1}))
+    if(cartProduct.quantity == 10) return
+    setCartProduct(prev => ({...prev, quantity: prev.quantity + 1}))
   }
   const decreaseFunc = () => {
-    if(cardProduct.quantity == 1) return
-    setCardProduct(prev => ({...prev, quantity: prev.quantity - 1}))
+    if(cartProduct.quantity == 1) return
+    setCartProduct(prev => ({...prev, quantity: prev.quantity - 1}))
   }
   return (
     <PageContainer>
@@ -75,21 +87,35 @@ const DetailClient = ({product}:{product:Product}) => {
           
           <div className="mb-4">
             <Rating name="read-only" value={4} readOnly />
-            
           </div>
 
           <p className="mt-4 text-lg text-gray-700 text-center">{product.description}</p>
           
           <p className="text-xl text-black font-semibold mt-2 text-center">{product.price} ₺</p>
-          <Counter increateFunc={increaseFunc} decreaseFunc={decreaseFunc} cardProduct={cardProduct} />
-          <div className="mt-4">
-            <button
-              onClick={() => router.push('/cart')}
-              className="px-4 py-2 bg-blue-500 text-white rounded-lg shadow-lg hover:bg-blue-600 transition"
+          <p
+              className={`mt-2 text-lg font-semibold ${
+                product.inStock ? "text-green-600" : "text-red-600"
+              }`}
             >
-              Sepete Ekle
-            </button>
-          </div>
+              {product.inStock ? "STOK MEVCUT" : "STOKTA YOK"}
+            </p>
+          
+          {
+            displayButton ? <>
+            <Button text ="Ürün sepete eklendi." small outline onClick={() =>{}}></Button>
+            </> : <>
+            <Counter increaseFunc={increaseFunc} decreaseFunc={decreaseFunc} cartProduct={cartProduct} />
+            <Button 
+                text="Sepete Ekle" 
+                onClick={() => {
+                  if (!displayButton) {
+                    addToBasket(cartProduct);
+                  }
+                }}
+/>
+            </>
+          }
+          
         </div>
       </div>
     </div>
