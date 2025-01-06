@@ -19,7 +19,6 @@ const Home = () => {
           <Category/>
           <Products/>
         </div>
-
       <footer className="text-center mt-10 py-4 border-t">
         <p className="text-sm text-gray-500">&copy; 2024 Öztürk E-Ticaret Web. Tüm Haklar Saklıdır.</p>
       </footer>

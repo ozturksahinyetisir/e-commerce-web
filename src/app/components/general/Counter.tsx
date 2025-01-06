@@ -8,9 +8,11 @@ interface CounterProps {
 
 const Counter: React.FC<CounterProps> = ({ cartProduct, increaseFunc, decreaseFunc }) => {
     return (
+      
       <div className="flex items-center gap-4 text-black font-semibold mt-10 mb-10">
         <button
           onClick={decreaseFunc}
+          
           className="w-10 h-10 flex items-center justify-center rounded-full bg-gray-200 text-gray-700 hover:bg-gray-300 shadow transition-all"
         >
           -

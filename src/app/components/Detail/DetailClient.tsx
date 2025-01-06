@@ -52,6 +52,7 @@ const DetailClient = ({product}:{product:Product}) => {
 }, [cartProducts, product.id]); 
 
   const increaseFunc = () => {
+    
     if(cartProduct.quantity == 10) return
     setCartProduct(prev => ({...prev, quantity: prev.quantity + 1}))
   }
