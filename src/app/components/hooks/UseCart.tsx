@@ -49,7 +49,7 @@ export const CartContextProvider = (props: Props) => {
             toast.success(`${product.name} sepete eklendi`, { icon: '🛒' });
             return updatedCart;
         });
-    }, []);
+    }, [cartProducts]);
 
     const addToBasketIncrement = useCallback((product: CartProductProps) => {
         let updatedCart;
@@ -91,7 +91,7 @@ export const CartContextProvider = (props: Props) => {
             toast.success(`${product.name} sepetten kaldırıldı`, { icon: '🛒❌' });
             return updatedCart;
         });
-    }, []);
+    }, [cartProducts]);
 
     const clearCart = useCallback(() => {
         setCartProducts(null);
