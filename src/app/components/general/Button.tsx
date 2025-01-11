@@ -1,22 +1,23 @@
 import React from "react"
-//import { IconType } from "react-icons";
+import { IconType } from "react-icons";
 
 interface ButtonProps {
     text: string
     onClick: (e: React.MouseEvent<HTMLButtonElement>) => void
     small? : boolean
     outline? : boolean
-    //icon: IconType 
+    icon?: IconType 
     disabled?: boolean
     children?: React.ReactNode
 
 }
-const Button: React.FC<ButtonProps> = ({ text, onClick, small, outline, disabled }) => {
+const Button: React.FC<ButtonProps> = ({ text, onClick, small, outline, disabled ,icon: Icon}) => {
   return (
     <button
       disabled={disabled}
       onClick={onClick}
       className={`
+        flex items-center justify-center gap-2
         disabled:opacity-50 
         disabled:cursor-not-allowed 
         disabled:animate-none 
@@ -29,6 +30,7 @@ const Button: React.FC<ButtonProps> = ({ text, onClick, small, outline, disabled
         transition-all duration-200 ease-in-out
       `}
     >
+      {Icon && <Icon />}
       {text}
     </button>
   );
