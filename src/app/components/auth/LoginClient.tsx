@@ -6,19 +6,44 @@ import Button from "../general/Button"
 import { useForm,SubmitHandler, FieldValues} from "react-hook-form"
 import { FaGoogle } from "react-icons/fa"
 import { useRouter } from 'next/navigation';
+import toast from "react-hot-toast"
+import { signIn } from "next-auth/react"
 
 const LoginClient = () => {
-  const { register,handleSubmit, formState: { errors } } = useForm<FieldValues>();
-  const onSubmit: SubmitHandler<FieldValues> = (data) => console.log(data);
+    const router = useRouter();
+    const {
+        register,
+        handleSubmit,
+        formState: { errors },
+      } = useForm<FieldValues>()
 
-  const router = useRouter();
-  const goToLogin = () => {
-    router.push('/login');
-  };
+      const onSubmit: SubmitHandler<FieldValues> = (data) => {
+        signIn('credentials', {
+            ...data,
+            redirect: false
+        }).then((callback) => {
+            if(callback?.ok){
+                router.push('/cart')
+                router.refresh();
+                toast.success('Giriş Başarılı.')
+            }
 
-  const goToRegister = () => {
-    router.push('/register'); 
-  };
+            if(callback?.error){
+                toast.error(callback.error)
+            }
+        })
+      }
+
+
+      const goToLogin = () => {
+        router.push('/login');
+    
+        }; 
+
+        const goToRegister = () => {  
+          router.push('/register');
+        }
+
   return (
     <AuthContainer>
     <div className="text-center w-full md:w-[500px] p-10 shadow-lg rounded-mg">

@@ -6,15 +6,49 @@ import Button from "../general/Button"
 import { useForm,SubmitHandler, FieldValues} from "react-hook-form"
 import { FaGoogle } from "react-icons/fa"
 import { useRouter } from 'next/navigation';
-const RegisterClient = () => {
-  const { register,handleSubmit, formState: { errors } } = useForm<FieldValues>();
-  const onSubmit: SubmitHandler<FieldValues> = (data) => console.log(data); 
+import axios from "axios"
+import toast from "react-hot-toast"
+import { User } from "@prisma/client"
+import { signIn } from "next-auth/react"
 
+interface RegisterClientProps{
+  currentUser: User | null | undefined
+}
+const RegisterClient:React.FC<RegisterClientProps> = ({}) => {
   const router = useRouter();
-  const goToLogin = () => {
-    router.push('/login');
+  const {
+      register,
+      handleSubmit,
+      formState: { errors },
+    } = useForm<FieldValues>()
+
+
+  const onSubmit: SubmitHandler<FieldValues> = (data) => {
+    axios.post('/api/register', data).then(() => {
+      toast.success("Kayıt olma başarılı", { icon: '👍' });
+      signIn('credentials', {
+        email: data.email,
+        password: data.password,
+        redirect: false
+    }).then((callback) => {
+        if(callback?.ok){
+            router.push('/cart')
+            router.refresh();
+            toast.success('Login İşlemi Basarılı...')
+        }
+
+        if(callback?.error){
+            toast.error(callback.error)
+        }
+    })
+    })
   };
 
+  
+  const goToLogin = () => {
+    router.push('/login');
+
+    };
   const goToRegister = () => {
     router.push('/register'); 
   };

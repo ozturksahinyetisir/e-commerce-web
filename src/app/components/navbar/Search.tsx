@@ -2,7 +2,7 @@ import React from "react";
 
 const Search = () => {
     return (
-        <div className="hidden md:flex flex-1 px-40">
+        <div className="hidden items-center md:flex">
             <input
                 type="text"
                 placeholder="Ara"

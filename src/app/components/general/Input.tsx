@@ -23,7 +23,7 @@ const Input:React.FC<InputProps> = ({
 }) => {
 
     return (
-        <input className={` w-full h-12 p-3 rounded-md outline-none my-2 border ${errors[id] ? "border border-red-500" : "border border-slate-300"}`} id={id} placeholder={placeholder} disabled={disabled} type={type} required={required} {...register(id,{required} )} />
+        <input className={` w-full h-12 p-3 rounded-md outline-none my-2 border focus:border-blue-500 border-2 ${errors[id] ? "border border-red-500" : "border border-slate-300"}`} id={id} placeholder={placeholder} disabled={disabled} type={type} required={required} {...register(id,{required} )} />
       )
 }
 

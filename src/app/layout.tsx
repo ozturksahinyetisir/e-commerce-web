@@ -20,13 +20,13 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html className="" lang="en">
       <body className="bg-blue-50">
         <CartProvider>
-        <Navbar />
+        <Navbar/>
         <main className="min-h-screen">
           <Providers>{children}</Providers></main>
-        <Footer />
+        <Footer/>
         </CartProvider>
       </body>
     </html>

@@ -15,8 +15,8 @@ const MyCart = () => {
 
   return (
     <div className="hidden md:flex relative" >
-        <MdShoppingBasket size="40" className="cursor-pointer" onClick={goToCart} />
-        <div className="absolute -top-1 -right-2 flex items-center text-center bg-red-500 w-3 h-3 p-3 justify-center rounded-full font-bold">{cartProducts?.length}</div>
+        <MdShoppingBasket size="40" className="text-white cursor-pointer" onClick={goToCart} />
+        <div className="absolute -top-1 -right-2 flex text-white items-center text-center bg-red-500 w-3 h-3 p-3 justify-center rounded-full font-bold">{cartProducts?.length}</div>
     </div>
   )
 }

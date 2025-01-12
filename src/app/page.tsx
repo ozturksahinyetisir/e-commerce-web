@@ -8,8 +8,8 @@ const Home = () => {
     <div className="container mx-auto p-4">
       <header className="text-center mb-10">
       <h1 className="text-5xl font-serif text-gray-800">
-  Öztürk Accessory
-</h1>
+        Öztürk Accessory
+      </h1>
 <p className="text-lg text-gray-500 mt-4 font-light">
   En yeni, zarif takılarla alışverişe başlayın ve kendinizi şımartın!
 </p>

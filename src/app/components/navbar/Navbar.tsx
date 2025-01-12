@@ -23,12 +23,6 @@ const Navbar = () => {
           <Link href="/shop" className="hover:text-gray-300">
             Mağaza
           </Link>
-          <Link href="/about" className="hover:text-gray-300">
-            Hakkında
-          </Link>
-          <Link href="/contact" className="hover:text-gray-300">
-            İletişim
-          </Link>
         </div>
 
         <Search/>
