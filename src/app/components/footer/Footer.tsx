@@ -32,7 +32,7 @@ const Footer = () => {
           <div>
             <h3 className="font-semibold">Linkedin & Github</h3>
             <div className="flex space-x-4 mt-2 justify-center">
-            <a href="https://www.linkedin.com/in/ozturksahinyetisir/" target="_blank" rel="noopener noreferrer">
+            <a href="https://www.linkedin.com/in/ozturksahinyetisir/" target="_blank" rel="noopener noreferrer">n
               <svg className="w-6 h-6 text-white hover:text-blue-600" fill="currentColor" viewBox="0 0 24 24">
                 <path d="M23.94 0H.06C.03 0 0 .03 0 .06v23.88c0 .03.03.06.06.06h23.88c.03 0 .06-.03.06-.06V.06C24 .03 23.97 0 23.94 0zm-6.47 20.94h-3.57v-6.77c0-1.61-.58-2.71-2.04-2.71-1.1 0-1.75.74-2.03 1.46-.1.24-.13.57-.13.89v7.13H7.45V9.93h3.42v1.45h.05c.47-.9 1.64-1.64 3.01-1.64 2.21 0 3.89 1.48 3.89 4.26v6.94h-.01zM3.47 8.37c-1.18 0-2.14-.96-2.14-2.14s.96-2.14 2.14-2.14 2.14.96 2.14 2.14-.96 2.14-2.14 2.14zm1.78 12.57h-3.56V9.93h3.56v11.01z"></path>
               </svg>

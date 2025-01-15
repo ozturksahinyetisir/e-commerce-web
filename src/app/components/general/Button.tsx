@@ -9,9 +9,10 @@ interface ButtonProps {
     icon?: IconType 
     disabled?: boolean
     children?: React.ReactNode
+    className?: string
 
 }
-const Button: React.FC<ButtonProps> = ({ text, onClick, small, outline, disabled ,icon: Icon}) => {
+const Button: React.FC<ButtonProps> = ({ text, onClick, small, outline, disabled ,icon: Icon,className}) => {
   return (
     <button
       disabled={disabled}
@@ -28,6 +29,7 @@ const Button: React.FC<ButtonProps> = ({ text, onClick, small, outline, disabled
         hover:scale-105 
         active:scale-95 
         transition-all duration-200 ease-in-out
+        ${className || ""} 
       `}
     >
       {Icon && <Icon />}
@@ -36,4 +38,4 @@ const Button: React.FC<ButtonProps> = ({ text, onClick, small, outline, disabled
   );
 };
 
-export default Button
+export default Button;

@@ -5,10 +5,12 @@ import Search from './Search';
 import HamburgerMenu from './HamburgerMenu';
 import User from './User';
 import MyCart from './MyCart';
+import { getCurrentUser } from '@/app/actions/getCurrentUser';
 
 
 
-const Navbar = () => {
+const Navbar = async () => {
+  const currentUser  = await getCurrentUser();
   return (
     
     <nav className="bg-blue-500 p-4 shadow-md">
@@ -27,7 +29,11 @@ const Navbar = () => {
 
         <Search/>
         <MyCart/>
-        <User/>
+        <User currentUser={currentUser ? {
+            ...currentUser,
+            createdAt: new Date(currentUser.createdAt),
+            updatedAt: new Date(currentUser.updatedAt)
+        } : null}/>
         <HamburgerMenu/>
       </div>
     </nav>
